@@ -1,0 +1,4 @@
+This project does not uses node or express. It is just a frontend side. No backend integration is done.
+
+To run the project.
+Open index.html in browser and click on the page.
