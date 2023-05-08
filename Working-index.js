@@ -2,8 +2,7 @@ const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 const SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList;
 const SpeechRecognitionEvent = window.SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 
-const colors = [ "up", "down", "move up", "mode down", "scroll up", "scroll down", "top", "bottom",
-                 "top of page", "bottom of page"
+const colors = [ "up", "down", 
                  /* … */, ];
 const grammar = `#JSGF V1.0; grammar colors; public <color> = ${colors.join(" | ")};`;
 
@@ -40,6 +39,13 @@ recognition.onresult = (event) => {
         window.scrollBy({ top: -1000, left: 0, behavior: "smooth" });
     } else if (command == "down" || command == "move down" || command == "sroll down") {
         window.scrollBy({ top: 1000, left: 0, behavior: "smooth" });
+    }
+
+    //Scroll to the top or bottom //Check this command.
+    if(command == "top" || command == "top of page") {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    } else if (command == "bottom" || command == "bottom of page") {
+        window.scrollTo({ top: window.length(), left: 0, behavior: "smooth" });
     }
     console.log(`Confidence: ${event.results[0][0].confidence}`);
 };
